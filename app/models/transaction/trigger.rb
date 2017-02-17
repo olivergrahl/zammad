@@ -116,8 +116,7 @@ class Transaction::Trigger
             trigger.condition.each do |key, _value|
               (object_name, attribute) = key.split('.', 2)
               next if object_name != 'ticket'
-              next if !@item[:changes]
-              next if !@item[:changes][attribute]
+              next if @item[:changes] && !@item[:changes][attribute]
               match = true
               break
             end
